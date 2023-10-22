@@ -1,0 +1,15 @@
+{
+  "name": "init-db",
+  "version": "1.0.0",
+  "description": "Helper project to initialize a database with data from a 3rd party API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.5.1"
+  }
+}
