@@ -3,7 +3,6 @@ const { default: axios } = require('axios');
 let url = 'https://rickandmortyapi.com/api/character/?page=1';
 
 let chars = [];
-
 const getAllChars = async () => {
     while (url) {
         await axios
@@ -18,4 +17,23 @@ const getAllChars = async () => {
     }
 };
 
-getAllChars().then(() => console.log(chars));
+getAllChars().then(() =>
+    chars.map((char) =>
+        axios.put(
+            `https://rm-card-default-rtdb.firebaseio.com/library/${char.id}.json`,
+            {
+                id: char.id,
+                name: char.name,
+                status: char.status,
+                type:
+                    char.type.length > 0
+                        ? `${char.species}: ${char.type}`
+                        : char.species,
+                gender: char.gender,
+                origin: char.origin.name,
+                image: char.image,
+                rarity: `${char.episode.length}`,
+            }
+        )
+    )
+);
